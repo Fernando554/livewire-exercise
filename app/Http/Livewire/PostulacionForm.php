@@ -98,20 +98,14 @@ class PostulacionForm extends Component
             }
         }
     }
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
     public function render()
-    {        
+    {      
         return view('livewire.postulacion-form');
     }
 
     public function storeOrUpdate()
     {
-        $validatedData = $this->validate([
+        $this->validate([
             'name' => 'required|string',
             'last_name1' => 'required|string',
             'last_name2' => 'nullable|string',

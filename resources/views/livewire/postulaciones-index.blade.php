@@ -1,13 +1,13 @@
-<div class="row justify-content-between align-items-center">
-    <h3 class="col-auto">Lista de Postulaciones</h3>
-    <div class="col-auto">
-        <a href="{{ route('home') }}" class="btn btn-primary">
-            <i data-feather="plus-square"></i>
-            Nueva Postulación
-        </a>
+<div>
+    <div class="row justify-content-between align-items-center">
+        <h3 class="col-auto">Lista de Postulaciones</h3>
+        <div class="col-auto">
+            <a href="{{ route('home') }}" class="btn btn-primary">
+                <i data-feather="plus-square"></i>
+                Nueva Postulación
+            </a>
+        </div>
     </div>
-</div>
-
 <div class="row mt-3">
     <div class="stretch-card">
         <div class="card">
@@ -64,18 +64,15 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('home', ['applicationId' => $application->id]) }}" class="btn btn-sm btn-primary">Editar</a>
+                                    <button wire:click="destroy({{ $application->id }})" class="btn btn-sm btn-danger">Eliminar</button>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <div class="container px-5">
-                    <div class="container mb-5 my-md-3 d-flex justify-content-between align-items-between">
-                        {{ 'Mostrando registros del ' . $applications->firstItem() . ' al ' . $applications->lastItem() . ' de un total de ' . $applications->total() . ' registros' }}
-                        {!! $applications->links() !!}
-                    </div>
-                </div>
+                {!! $applications->links() !!}
             </div>
         </div>
     </div>
+</div>
 </div>

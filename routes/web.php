@@ -22,3 +22,4 @@ Route::get('/index/{applicationId?}', [applicationController::class, 'index'])->
 Route::get('/create/{applicationId?}', [applicationController::class, 'create'])->name('home');
 Route::post('/applications-submit', [PostulacionForm::class, 'storeOrUpdate'])->name('applications-submit');
 Route::get('/applications-submit', [PostulacionForm::class, 'storeOrUpdate'])->name('applications-submit');
+Route::get('/export', [applicationController::class, 'export'])->name('export');

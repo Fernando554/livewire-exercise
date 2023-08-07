@@ -9,6 +9,6 @@
 @if ($errors->has('application'))
 <div class="alert alert-danger">{{ $errors->first('application') }}</div>
 @endif
-
+<a class="btn btn-warning float-end" href="{{ route('export') }}">Export User Data</a>
     <livewire:postulaciones-index />    
 @endsection

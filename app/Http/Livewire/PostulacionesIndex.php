@@ -13,6 +13,12 @@ class PostulacionesIndex extends Component
     public $search = '';
     public $orderBy = 'id';
     public $order = 'desc';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $applications = applications::where('name', 'like', '%'.$this->search. '%')
@@ -56,5 +62,13 @@ class PostulacionesIndex extends Component
         ->orderBy($this->orderBy, $this->order)
         ->paginate($this->paginate);
         return view('livewire.postulaciones-index', compact('applications'));
+    }
+
+    //delete
+    public function destroy($id)
+    {
+        $applications = Applications::find($id);
+        $applications->delete();
+        session()->flash('message', 'Postulación eliminada correctamente.');
     }
 }
