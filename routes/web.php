@@ -19,5 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/index/{applicationId?}', [applicationController::class, 'index'])->name('index');
-Route::get('/home/{applicationId?}', [applicationController::class, 'create'])->name('home');
+Route::get('/create/{applicationId?}', [applicationController::class, 'create'])->name('home');
 Route::post('/applications-submit', [PostulacionForm::class, 'storeOrUpdate'])->name('applications-submit');
+Route::get('/applications-submit', [PostulacionForm::class, 'storeOrUpdate'])->name('applications-submit');

@@ -9,7 +9,11 @@
             </a>
             <button type="submit" class="btn btn-primary" wire:click="storeOrUpdate">
                 <i data-feather="plus-square"></i>
-                Crear o Actualizar
+                @if ($applicationId)
+                    actualizar
+                @else
+                    agregar
+                @endif
             </button>
         </div>
     </div>
@@ -144,13 +148,13 @@
                             <input type="text" id="replacement_employee_id" wire:model.defer="replacement_employee_id" class="form-control">
                             @error('replacement_employee_id') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-
+                        @if($replacement_employee_id != null)
                         <div class="col-12 col-sm-6 mt-3">
                             <label for="replacement_employee_name">Nombre Empleado de Reemplazo:</label>
                             <input type="text" id="replacement_employee_name" wire:model.defer="replacement_employee_name" class="form-control">
                             @error('replacement_employee_name') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-
+                        @endif
                         <div class="col-12 col-sm-6 mt-3">
                             <label for="replacement_employee_reasons">Motivos de Reemplazo:</label>
                             <input type="text" id="replacement_employee_reasons" wire:model.defer="replacement_employee_reasons" class="form-control">
@@ -257,9 +261,9 @@
                         <div class="col-12 col-sm-6 mt-3">
                             <input type="file" id="src" wire:model="src" class="form-control">
                             @error('src') <span class="text-danger">{{ $message }}</span> @enderror
-                            @if ($src == null)
+                            {{-- @if ($src == null)
                                 <img src="{{ $src->temporaryUrl() }}" class="img-fluid mt-3">
-                            @endif
+                            @endif --}}
                         </div>                    
                     </div>
                 </div>

@@ -5,10 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\applications;
+use Livewire\WithPagination;
 
 class PostulacionForm extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     public $name;
     public $last_name1;
@@ -97,14 +99,19 @@ class PostulacionForm extends Component
         }
     }
 
-    public function render()
+    public function updatingSearch()
     {
+        $this->resetPage();
+    }
+
+    public function render()
+    {        
         return view('livewire.postulacion-form');
     }
 
     public function storeOrUpdate()
     {
-        $this->validate([
+        $validatedData = $this->validate([
             'name' => 'required|string',
             'last_name1' => 'required|string',
             'last_name2' => 'nullable|string',
@@ -144,7 +151,6 @@ class PostulacionForm extends Component
             'business_id' => 'required',
             'src' => 'required|file',
         ]);
-        try {
             $data = [
                 'name' => $this->name,
                     'last_name1' => $this->last_name1,
@@ -188,18 +194,13 @@ class PostulacionForm extends Component
             // dd($data);
             if ($this->applicationId) {
                 Applications::find($this->applicationId)->update($data);
-                $this->emit('alert', 'success', 'Postulación actualizada con éxito');
+                $this->emit('message', 'success', 'Postulación actualizada con éxito');
             }else{
                 Applications::create($data);
-                $this->emit('alert', 'success', 'Postulación creada con éxito');
+                $this->emit('message', 'success', 'Postulación creada con éxito');
             }
             session()->flash('message', 'Application successfully updated.');
             // dd($data);
             return redirect()->route('index');
-        } catch (\Exception $e) {
-            dd($e);
-            session()->flash('message', 'Application could not be updated.');
-            return back()->withInput();
-        }
     }
 }
