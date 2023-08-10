@@ -1,4 +1,3 @@
-<!-- resources/views/livewire/postulacion-form.blade.php -->
 <div>
 <form wire:submit.prevent="storeOrUpdate" method="POST">
     <div class="row justify-content-between align-items-center">
@@ -149,13 +148,13 @@
                             <input type="text" id="replacement_employee_id" wire:model="replacement_employee_id" class="form-control">
                             @error('replacement_employee_id') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-                        {{-- @if($replacement_employee_id) --}}
+                        @if($replacement_employee_id)
                         <div class="col-12 col-sm-6 mt-3">
                             <label for="replacement_employee_name">Nombre Empleado de Reemplazo:</label>
                             <input type="text" id="replacement_employee_name" wire:model="replacement_employee_name" class="form-control">
                             @error('replacement_employee_name') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-                        {{-- @endif --}}
+                        @endif
                         <div class="col-12 col-sm-6 mt-3">
                             <label for="replacement_employee_reasons">Motivos de Reemplazo:</label>
                             <input type="text" id="replacement_employee_reasons" wire:model="replacement_employee_reasons" class="form-control">

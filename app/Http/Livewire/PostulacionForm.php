@@ -143,7 +143,7 @@ class PostulacionForm extends Component
             'notes' => 'nullable',
             'reference' => 'nullable',
             'business_id' => 'required',
-            'src' => 'required|file',
+            'src' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png',
         ]);
             $data = [
                 'name' => $this->name,

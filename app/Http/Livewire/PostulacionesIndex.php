@@ -69,6 +69,14 @@ class PostulacionesIndex extends Component
     {
         $applications = Applications::find($id);
         $applications->delete();
-        session()->flash('message', 'Postulación eliminada correctamente.');
+        return redirect()->route('index')->with('message','Registro eliminado con éxito <a href="/restore/'.$id.'">Deshacer</a>');
+    }
+
+    //restaurar
+    public function restore($id)
+    {
+        $applications = Applications::onlyTrashed()->where('id', $id);
+        $applications->restore();
+        session()->flash('message', 'Postulación restaurada correctamente.');
     }
 }

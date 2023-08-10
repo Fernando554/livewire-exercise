@@ -1,4 +1,5 @@
 <div>
+    @livewireStyles()
     <div class="row justify-content-between align-items-center">
         <h3 class="col-auto">Lista de Postulaciones</h3>
         <div class="col-auto">
@@ -75,4 +76,5 @@
         </div>
     </div>
 </div>
+@livewireScripts()
 </div>
